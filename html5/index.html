@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Web server</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Web Server</h1>
+                    <p>A <strong>web server</strong> is a computer system that processes requests via <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" title="Hypertext Transfer Protocol">HTTP</a>, the basic network protocol used to distribute information on the <a href="https://en.wikipedia.org/wiki/World_Wide_Web" title="World Wide Web">World Wide Web</a>. 
+                       The term can refer to the entire system, or specifically to the software that accepts and supervises the HTTP requests.
+                    </p>
+                    <hr />
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <h2>Contents</h2>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#overview"><em>Overview</em></a></li>
+                        <li><a href="#history"><em>History</em></a></li>
+                        <li><a href="#pathtranslation"><em>Path translation</em></a></li>
+                        <li><a href="#loadlimits"><em>Load Limits</em></a>
+                            <ul class="nav col-md-offset-1  col-xs-offset-1">
+                                <li><a href="#causes"><em>Causes Of Overload</em></a></li>        
+                                <li><a href="#symptoms"><em>Symptoms Of Overload</em></a></li>        
+                                <li><a href="#techniques"><em>Anti-Overload Techniques</em></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#marketshare"><em>Market Share</em></a></li>
+                        <li><a href="#apache"><em>Apache Web Server</em></a>
+                            <ul class="nav col-md-offset-1  col-xs-offset-1">
+                                <li><a href="#configuration"><em>Configuration Files And Directives</em></a></li>        
+                                <li><a href="#logfiles"><em>Log Files And Troubleshooting</em></a></li> 
+                            </ul>
+                        </li>
+                        <li><a href="#video"><em>Video Tutorial</em></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-9 text-justify">
+                    <h2 id="overview">Overview</h2>
+                    <p>The primary function of a web server is to store, process and deliver web pages to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (<abbr title="Hyper Text Transfer Protocol">HTTP</abbr>). Pages delivered are most frequently HTML documents, which may include images, style sheets and scripts in addition to text content.</p>
+                    <blockquote>
+                        Web site is a collection of web pages while web server is a software that responds to the request for web resources.
+                    </blockquote>
+                    <p>
+                        A user agent, commonly a web browser or web crawler, initiates communication by making a request for a specific resource using HTTP and the server responds with the content of that resource or an error message if unable to do so. The resource is typically a real file on the server's secondary storage, but this is not necessarily the case and depends on how the web server is implemented.
+                    </p>
+                    <p>
+                        While the primary function is to serve content, a full implementation of HTTP also includes ways of receiving content from clients. This feature is used for submitting web forms, including uploading of files.
+                    </p>
+                    <a target="_blank" class="pull-right" href="https://upload.wikimedia.org/wikipedia/commons/0/0e/Working_of_hosting_servers.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Working_of_hosting_servers.jpg/240px-Working_of_hosting_servers.jpg" alt="bilde"/></a>
+                    <p>
+                        Many generic web servers also support server-side scripting using Active Server Pages (<abbr title="Active Server Pages">ASP</abbr>), PHP, or other scripting languages. This means that the behaviour of the web server can be scripted in separate files, while the actual server software remains unchanged. Usually, this function is used to generate HTML documents dynamically (&quot;on-the-fly&quot;) as opposed to returning static documents. The former is primarily used for retrieving and/or modifying information from databases. The latter is typically much faster and more easily cached but cannot deliver dynamic content.
+                    </p>
+                    <p>
+                        Web servers are not only used for serving the World Wide Web. They can also be found embedded in devices such as printers, routers, webcams and serving only a local network. The web server may then be used as a part of a system for monitoring or administering the device in question. This usually means that no additional software has to be installed on the client computer, since only a web browser is required (which now is included with most operating systems).
+                    </p>
+                    <h2 id="history">History</h2>
+                    <p>In 1989 Tim Berners-Lee proposed a new project to his employer CERN, with the goal of easing the exchange of information between scientists by using a hypertext system. The project resulted in Berners-Lee writing two programs in 1990:
+                    </p>
+                    <ul>
+                        <li>
+                            A browser called <em>WorldWideWeb</em>.
+                        </li>
+                        <li>
+                            The world's first web server, later known as <em>CERN httpd</em>, which ran on NeXTSTEP
+                        </li>
+                    </ul>
+                    <p>
+                        Between 1991 and 1994, the simplicity and effectiveness of early technologies used to surf and exchange data through the World Wide Web helped to port them to many different operating systems and spread their use among scientific organizations and universities, and subsequently to industry.
+                    </p>
+                    <p>
+                        In 1994 Berners-Lee decided to constitute the World Wide Web Consortium (<abbr title="World Wide Web Consortium">W3C</abbr>) to regulate the further development of the many technologies involved (HTTP, HTML, etc.) through a standardization process.
+                    </p>
+                    <h2 id="pathtranslation">Path Translation</h2>
+                    <p>
+                        Web servers are able to map the path component of a Uniform Resource Locator (<abbr title="Uniform Resource Locator">URL</abbr>) into:
+                    </p>
+                    <ul>
+                        <li>A local file system resource (for static requests)</li>
+                        <li>An internal or external program name (for dynamic requests)</li>
+                    </ul>
+                    <p>
+                        For a <em>static request</em> the URL path specified by the client is relative to the web server's root directory.
+                    </p>
+                    <p>
+                        Consider the following URL as it would be requested by a client:
+                    </p>
+                    <pre>http://www.example.com/path/file.html</pre>
+                    <p>
+                        The client's user agent will translate it into a connection to www.example.com with the following HTTP 1.1 request:
+                    </p>
+                    <pre>GET /path/file.html HTTP/1.1
+Host: www.example.com</pre>
+                    <p>
+                        The web server on <code>www.example.com</code> will append the given path to the path of its root directory. On an Apache server, this is commonly <code>/home/www</code> (On Unix machines, usually <code>/var/www</code>). The result is the local file system resource:
+                    </p>
+                    <pre>/home/www/<strong>path/file.html</strong></pre>
+                    <p>
+                        The web server then reads the file, if it exists, and sends a response to the client's web browser. The response will describe the content of the file and contain the file itself or an error message will return saying that the file does not exist or is unavailable.
+                    </p>
+                    <h2 id="loadlimits">Load Limits</h2>
+                    <p>
+                        A web server (program) has defined load limits, because it can handle only a limited number of concurrent client connections (usually between 2 and 80,000, by default between 500 and 1,000) per IP address (and TCP port) and it can serve only a certain maximum number of requests per second (<abbr title="Requests Per Second">RPS</abbr>, also known as queries per second or <abbr title="Queries Per Second">QPS</abbr>) depending on:
+                    </p>
+                    <ol>
+                        <li>its own settings,</li>
+                        <li>the HTTP request type,</li>
+                        <li>the HTTP request type,</li>
+                        <li>whether the content is static or dynamic,</li>
+                        <li>whether the content is cached, and</li>
+                        <li>the hardware and software limitations of the OS of the computer on which the web server runs.</li>
+                    </ol>
+                    <p>
+                        When a web server is near to or over its limit, it becomes unresponsive.
+                    </p>
+                    <h3 id="causes">Causes Of Overload</h3>
+                    <p>
+                        At any time web servers can be overloaded due to:
+                    </p>
+                    <dl>
+                        <dt>Excess legitimate web traffic.</dt>
+                        <dd>Thousands or even millions of clients connecting to the web site in a short interval, e.g., Slashdot effect;
+                        </dd>
+                        <dt>Distributed Denial of Service attacks.</dt>
+                        <dd>
+                            A denial-of-service attack (DoS attack) or distributed denial-of-service attack (DDoS attack) is an attempt to make a computer or network resource unavailable to its intended users;
+                        </dd>
+                        <dt>Computer worms</dt>
+                        <dd>
+                            that sometimes cause abnormal traffic because of millions of infected computers (not coordinated among them)
+                        </dd>
+                        <dt>XSS viruses</dt>
+                        <dd>
+                            can cause high traffic because of millions of infected browsers and/or web servers;
+                        </dd>
+                        <dt>Internet bots</dt>
+                        <dd>
+                            Traffic not filtered/limited on large web sites with very few resources (bandwidth, etc.);
+                        </dd>
+                        <dt>Internet (network) slowdowns,</dt>
+                        <dd>
+                            so that client requests are served more slowly and the number of connections increases so much that server limits are reached;
+                        </dd>
+                        <dt>Web servers (computers) partial unavailability.</dt>
+                        <dd>
+                            This can happen because of required or urgent maintenance or upgrade, hardware or software failures, back-end (e.g., database) failures, etc.; in these cases the remaining web servers get too much traffic and become overloaded.
+                        </dd>
+                    </dl>
+                    <h3 id="symptoms">Symptoms Of Overload</h3>
+                    <p>
+                        The symptoms of an overloaded web server are:
+                    </p>
+                    <ol>
+                        <li>Requests are served with (possibly long) delays (from 1 second to a few hundred seconds).</li>
+                        <li>The web server returns an HTTP error code, such as <samp>500</samp>, <samp>502</samp>, <samp>503</samp>, <samp>504</samp>, <samp>408</samp>, or even <samp>404</samp>, which is inappropriate for an overload condition.</li>
+                        <li>The web server refuses or resets (interrupts) TCP connections before it returns any content.</li>
+                        <li>In very rare cases, the web server returns only a part of the requested content. This behavior can be considered a bug, even if it usually arises as a symptom of overload.</li>
+                    </ol>
+                    <h3 id="techniques">Anti-Overload Techniques</h3>
+                    <p>
+                        To partially overcome above average load limits and to prevent overload, most popular web sites use common techniques like:
+                    </p>
+                    <ol>
+                        <li>Managing network traffic, by using:
+                            <ul>
+                                <li>Firewalls to block unwanted traffic coming from bad IP sources or having bad patterns</li>
+                                <li>HTTP traffic managers to drop, redirect or rewrite requests having bad HTTP patterns</li>
+                                <li>Bandwidth management and traffic shaping, in order to smooth down peaks in network usage</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Deploying web cache techniques
+                        </li>
+                        <li>
+                            Using different domain names to serve different (static and dynamic) content by separate web servers, i.e.:
+                            <ul>
+                                <li>http://images.example.com</li>
+                                <li>http://www.example.com</li>
+                            </ul>
+                        </li>
+                        <li>Using different domain names and/or computers to separate big files from small and medium-sized files; the idea is to be able to fully cache small and medium-sized files and to efficiently serve big or huge (over 10 - 1000 MB) files by using different settings
+                        </li>
+                        <li>Using many internet servers (programs) per computer, each one bound to its own network card and IP address</li>
+                        <li>Using many internet servers (computers) that are grouped together behind a load balancer so that they act or are seen as one big web server
+                        </li>
+                        <li>Adding more hardware resources (i.e. RAM, disks) to each computer</li>
+                        <li>Tuning OS parameters for hardware capabilities and usage</li>
+                        <li>Using more efficient computer programs for web servers, etc.</li>
+                        <li>Using other workarounds, especially if dynamic content is involved</li>
+                    </ol>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Usage_share_of_web_servers_%28Source_Netcraft%29.svg/320px-Usage_share_of_web_servers_%28Source_Netcraft%29.svg.png" class="pull-right" alt="bilde2" />
+                    <h2 id="marketshare">Market Share</h2>
+                    <p>
+                        Below are the latest statistics of the market share of the top web servers on the Internet by <strong>Netcraft February 2016 Web Server Survey.</strong>
+                    </p>
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>Product</th>
+                            <th>Vendor</th>
+                            <th>January 2016</th>
+                            <th>Percent</th>
+                            <th>February 2016</th>
+                            <th>Percent</th>
+                            <th>Change</th>
+                        </tr>
+                        <tr>
+                            <td class="text-center" colspan="2">Apache</td>
+                            <td><s>304,271,061</s></td>
+                            <td><s>33.56%</s></td>
+                            <td><ins>306,292,557</ins></td>
+                            <td><ins>32.80%</ins></td>
+                            <td>0.76</td>
+                        </tr>
+                        <tr>
+                            <td>IIS</td>
+                            <td>Microsoft</td>
+                            <td><s>262,471,886</s></td>
+                            <td><s>28.95%</s></td>
+                            <td><ins>278,593,041</ins></td>
+                            <td><ins>29.83%</ins></td>
+                            <td>0.88</td>
+                        </tr>
+                        <tr>
+                            <td>nginx</td>
+                            <td>NGINX, Inc.</td>
+                            <td><s>141,443,630</s></td>
+                            <td><s>15.60%</s></td>
+                            <td><ins>137,459,391</ins></td>
+                            <td><ins>16.61%</ins></td>
+                            <td>-0.88</td>
+                        </tr>
+                        <tr>
+                            <td>GWS</td>
+                            <td>Google</td>
+                            <td><s>20,799,087</s></td>
+                            <td><s>2.29%</s></td>
+                            <td><ins>20,640,058</ins></td>
+                            <td><ins>2.21%</ins></td>
+                            <td>-0.08</td>
+                        </tr>
+                    </table>
+                    <h2 id="apache">Apache Web Server</h2>
+                    <p>If you're completely new to the Apache HTTP Server, or even to running a website at all, you might not know where to start, or what questions to ask. This document walks you through the basics.</p>
+                    <h3 id="configuration">Configuration Files And Directives</h3>
+                    <p>
+                        The Apache HTTP Server is configured via simple text files. These files may be located any of a variety of places, depending on how exactly you installed the server. If you installed httpd from source, the default location of the configuration files is <code>/usr/local/apache2/conf</code>. The default configuration file is usually called <code>httpd.conf</code>.
+                    </p>
+                    <p>
+                        The server is configured by placing configuration directives in these configuration files. A directive is a keyword followed by one or more arguments that set its value.
+                    </p>
+                    <p>
+                        The question of &quot;Where should I put that directive?&quot; is generally answered by considering where you want a directive to be effective. If it is a global setting, it should appear in the configuration file, outside of any <code>&lt;Directory&gt;</code>, <code>&lt;Location&gt;</code>, <code>&lt;VirtualHost&gt;</code>, or other section. If it is to apply only to a particular directory, then it should go inside a <code>&lt;Directory&gt;</code> section referring to that directory, and so on.
+                    </p>
+                    <h3 id="logfiles">Log Files And Troubleshooting</h3>
+                    <p>
+                        As an Apache HTTP Server administrator, your most valuable assets are the log files, and, in particular, the error log. Troubleshooting any problem without the error log is like driving with your eyes closed.
+                    </p>
+                    <p>
+                        The location of the error log is defined by the <code>ErrorLog</code> directive, which may be set globally, or per virtual host. Entries in the error log tell you what went wrong, and when. They often also tell you how to fix it. Each error log message contains an error code, which you can search for online for even more detailed descriptions of how to address the problem. You can also configure your error log to contain a log ID which you can then correlate to an access log entry, so that you can determine what request caused the error condition.
+                    </p>
+                    <h2 id="video">Video Tutorial</h2>
+                    <p>
+                        This video tutorial explains what web servers are and what software programs run on web servers. The tutorial was published on <a href="https://www.youtube.com/watch?v=wukg_do5AV4" title="What are Web Servers?">Youtube</a>.
+                    </p>
+                    <div class="col-md-offset-2">
+                    <iframe width="640" height="360" src="https://www.youtube.com/embed/wukg_do5AV4" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <hr>
+                    <h2>Credits</h2>
+                    <p>This homework was created by Kārlis Krīpens on <time datetime="2017-03-12">March 11th, 2017</time> .</p>
+                </div>
+            </div>
+        </div>
+	                    
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+    </body>
+</html>

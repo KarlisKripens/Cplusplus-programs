@@ -1,0 +1,3 @@
+Database contains information about companies providing public transport,
+types of the transport, routes, stops of the routes, tickets, employees of the company, their contracts.
+At the end, after the information input, it contains few selects.
