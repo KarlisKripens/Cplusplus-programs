@@ -1,0 +1,37 @@
+Input is a file, raksti.in with 6 test files. It contains number of articles (raksti), article identifiers with their names,
+and all their comments(article identifier and comment about article).
+Entry data is correct according to input data format and given limits.
+
+Output file contains 2N (number of articles * 2) rows. Each article contains two rows. Articles are in the ascending order
+according to their identifiers.
+Each articles tworow block contains the name of the article without quotation marks and second row contains all the comments of
+the article, starting with the newest first.
+Input:
+<N>
+<ID1> "<Title1>"
+...
+<IDN> "<TitleN>"
+<ID1> <Comment1>
+...
+<IDK> <CommentK>
+Output:
+<Title1>
+
+<Comment11> ... < CommentK1>
+
+...
+
+<TitleN>
+
+<Comment1N> ... < CommentLN>
+
+Example
+Input:
+1
+1 "APTS uzdevums Raksti"
+1 labs
+1 teicams
+1 izcils
+Output:
+APTS uzdevums Raksti
+izcils teicams labs

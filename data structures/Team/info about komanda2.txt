@@ -1,0 +1,26 @@
+Program takes input file, finds the first participant (root element) and the participants which he has invited, left child - woman, right child - man.
+Arrange them to see at which level the participant has been invited.
+
+Input file 
+<Participant> <Woman> <Man>
+
+Output file 
+<Level>: <Participant_1> <Participant_2> ... <Participant_n>
+
+Example:
+Input file
+
+1 2 3
+2 4 5
+3 6 7
+4 0 0
+5 0 0
+6 0 0
+7 0 0
+0 0 0
+
+Output file
+
+2: 4 5 6 7
+1: 2 3
+0: 1

@@ -1,0 +1,2 @@
+These programas where created for University of Latvia course Programming, and the comments on the most of them are in latvian.
+However, I have translated the required tasks and what this program does.

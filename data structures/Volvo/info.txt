@@ -1,0 +1,4 @@
+Finds all the possible combinations when volvo + fiat = motor corresponding number sum is correct. Supposing each letter represents a digit from 0 - 9.
+And if the letter appears again, it has to have the same number.
+Example:
+15715 + 9643 = 25358
